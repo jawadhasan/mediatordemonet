@@ -1,7 +1,7 @@
 using System;
 
 
-namespace mediatordemonet
+namespace MediatorDemo.App
 {
     public class Mediator{
 

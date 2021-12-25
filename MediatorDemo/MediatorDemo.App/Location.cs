@@ -1,4 +1,4 @@
-namespace mediatordemonet
+namespace MediatorDemo.App
 {
     public class Location
     {

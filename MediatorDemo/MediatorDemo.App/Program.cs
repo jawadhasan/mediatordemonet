@@ -1,11 +1,12 @@
 ﻿using System;
 
-namespace mediatordemonet
+namespace MediatorDemo.App
 {
     class Program
     {
         static void Main(string[] args)
         {
+
             var vehicle1 = new Vehicle("Reg1");
             var vehicle2 = new Vehicle("Reg2");
             var vehicle3 = new Vehicle("Reg3");
@@ -15,7 +16,6 @@ namespace mediatordemonet
             vehicle1.Move();
             vehicle2.Move();
             vehicle3.Move();
-
         }
     }
 }
