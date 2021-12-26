@@ -8,26 +8,30 @@ namespace MediatorDemo.App
     {
         static void Main(string[] args)
         {
-            //mediator
-            var markerMediator = new MarkerMediator();
-
-            //colleauges
-            var marker1 = markerMediator.CreateMarker();
-            var marker2 = markerMediator.CreateMarker();
-
-            //Messaging
-            marker1.SendLocation(new LocationData {
-                TimeStamp = DateTime.UtcNow,
-                Latitude = 1134,
-                Longitude = 1123                
-            });
+            //Un-comment the function calls to check the other demos.
 
 
+            ControlCenterDemo();
             //ChatRoomDemo();
-            //ControlCenterDemo();
+            //MarkerDemo();
             Console.ReadLine();
         }
 
+
+      
+
+        public static void ControlCenterDemo()
+        {
+            var vehicle1 = new Vehicle("Reg1");
+            var vehicle2 = new Vehicle("Reg2");
+            var vehicle3 = new Vehicle("Reg3");
+
+            var controlCenter = new ControlCenter();
+
+            vehicle1.Move();
+            vehicle2.Move();
+            vehicle3.Move();
+        }
 
         public static void ChatRoomDemo()
         {
@@ -50,17 +54,23 @@ namespace MediatorDemo.App
             walter.SendTo<Tester>("Hi"); //to Testers only
         }
 
-        public static void ControlCenterDemo()
+        public static void MarkerDemo()
         {
-            var vehicle1 = new Vehicle("Reg1");
-            var vehicle2 = new Vehicle("Reg2");
-            var vehicle3 = new Vehicle("Reg3");
+            //mediator
+            var markerMediator = new MarkerMediator();
 
-            var controlCenter = new ControlCenter();
+            //colleauges
+            var marker1 = markerMediator.CreateMarker();
+            var marker2 = markerMediator.CreateMarker();
 
-            vehicle1.Move();
-            vehicle2.Move();
-            vehicle3.Move();
+            //Messaging
+            marker1.SendLocation(new LocationData
+            {
+                TimeStamp = DateTime.UtcNow,
+                Latitude = 1134,
+                Longitude = 1123
+            });
+
         }
     }
 }
