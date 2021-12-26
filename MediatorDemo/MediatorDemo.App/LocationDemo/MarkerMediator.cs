@@ -43,26 +43,54 @@ namespace MediatorDemo.App.LocationDemo
         public Marker(string identifier)
         {
             this.Identifier = identifier;
+            this.LocationData = new LocationData();
         }
         internal void SetMediator(MarkerMediator mediator)
         {
             this._mediator = mediator;
         }
 
+        public void SetLocation(LocationData locationData)
+        {
+            this.LocationData = locationData;
+        }
+
+        public void BroadcastLocation()
+        {
+            Console.WriteLine($"{this.Identifier} is broadcasting location");
+            this._mediator.Send(this.LocationData, this);
+            Console.WriteLine("--------");
+        }
+
+
+        //This method will recieve location notifications from other markers
         public void ReceiveLocation(LocationData location)
         {
             Console.WriteLine("--------");
             Console.WriteLine($"{this.Identifier} Recieving marker");
             Console.WriteLine($"ts:{location.TimeStamp}, x:[{location.Longitude}] y:[{location.Latitude}]");
+
+            //process location here....e.g.
+            var distance = CalculateDistance(location);
+            if (distance < 100)
+            {
+                //this.backColor = Color.Red
+            }
+            else if (distance > 100 && 1 == 1)
+            { //some other conditon
+                //this.backColor = Color.Green etc...
+            } 
+
         }
 
-
-        public void SendLocation(LocationData location)
+        private double CalculateDistance(LocationData locationData)
         {
-            Console.WriteLine($"{this.Identifier} Sending marker");
-            _mediator.Send(location, this);
-            Console.WriteLine("--------");
+            var var1 = Math.Pow(locationData.Longitude - this.LocationData.Longitude, 2);
+            var var2 = Math.Pow(locationData.Latitude - this.LocationData.Latitude,2);
+            var result = Math.Sqrt(var1 + var2);
+            return result;
         }
+
     }
 
     //DTO

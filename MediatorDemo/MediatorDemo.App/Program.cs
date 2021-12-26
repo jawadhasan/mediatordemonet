@@ -63,13 +63,16 @@ namespace MediatorDemo.App
             var marker1 = markerMediator.CreateMarker();
             var marker2 = markerMediator.CreateMarker();
 
-            //Messaging
-            marker1.SendLocation(new LocationData
+            //set Location
+            marker1.SetLocation(new LocationData
             {
                 TimeStamp = DateTime.UtcNow,
                 Latitude = 1134,
                 Longitude = 1123
             });
+
+            //Messaging
+            marker1.BroadcastLocation();
 
         }
     }
